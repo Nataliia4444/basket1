@@ -1,0 +1,178 @@
+// *********** localStorage *************** \\
+// const LS_KEY = "Array of names";
+// const names = ["Alice", "Kate", "Emma"];
+
+// *****Збереження в LS***** \\
+
+// localStorage.setItem(LS_KEY, JSON.stringify(names));
+
+// *****Читання з LS***** \\
+
+// const value = localStorage.getItem(LS_KEY);
+// console.log(value);
+// console.log(JSON.parse(value));
+
+// *****Видалення з LS***** \\
+
+// localStorage.removeItem(LS_KEY)
+
+// *****Очищення LS******* \\
+
+// localStorage.clear()
+
+// ***Чому варто завжди використовувати метод JSON.stringify***\\
+
+// const LS_KEY = "Array of names";
+// const names = ["Alice", "Kate", "Emma"];
+
+// localStorage.setItem(LS_KEY, names);
+// const value = localStorage.getItem(LS_KEY);
+// console.log(value);
+// let a = 11;
+
+// try {
+//   //   console.log(JSON.parse(value));
+//   if (a === 10) {
+//     throw new Error("My error");
+//   } else {
+//     console.log("Спрацювало");
+//   }
+// } catch (err) {
+//   console.log(err);
+// }
+
+// console.log("aaa");
+
+// ***LS не може зберігати функції в жодній з їх інтерпретацій***\\.
+
+// const LS_KEY = 'my function';
+
+// function add(a, b) {
+//     return a + b;
+// }
+
+// localStorage.setItem(LS_KEY, JSON.stringify(add))
+// console.log(localStorage.getItem(LS_KEY));
+
+// const calculator = {
+//     a: 5,
+//     b: 10,
+//     add() {
+//         return this.a + this.b
+//     }
+// }
+
+// localStorage.setItem(LS_KEY, JSON.stringify(calculator))
+// console.log(localStorage.getItem(LS_KEY));
+
+// *************Практика*************** \\
+// Для практичного завдання використаємо ES6 модулі
+// Застосувати готові стилі з файлу style.css
+// Потрібно створити інтернет-магазин в якому буде 2 сторінки.
+
+// Сторінка Home має:
+// 1 Містити картки товарів (їх можна знайти в файлі products.json)
+// (приклад однієї картки https://prnt.sc/klV2uzLIcG8w)
+// 2 На списку товарів реалізовано делегування подій на додавання товару в кошик
+// 3 Для додавання товару в кошик використовуй LS
+// 4 Під час додавання контролюй кількість доданих товарів, для цього створи в об'єкті доданого товару новий ключ quantity
+
+// Сторінка Checkout має:
+// 1 Список карток доданих товарів, кожна картка має містити кількість куплених товарів та загальна вартість за даний товар.
+// (приклад однієї картки https://prnt.sc/ssZA4rzw1x9L)
+// 2 Повідомлення про загальну вартість покупки, якщо кошик порожній, то повідомлення "Your basket is empty"
+// 3 Кнопку для очищення кошика, після натискання на неї всі товари видаляються, а користувача перенаправляємо на сторінку Home
+
+// import { createMarkup } from "./templates/product.js";
+// import instruments from "./products.json" assert { type: "json" };
+
+// const refs = {
+//   productsList: document.getElementById("productsList"),
+// };
+// console.log(createMarkup(instruments));
+// const PRODUCTS_LS_KEY = "checkout";
+
+// refs.productsList.insertAdjacentHTML("beforeend", createMarkup(instruments));
+// refs.productsList.addEventListener("click", handleAdd);
+
+// function handleAdd(event) {
+//   if (event.target.id !== "addBtn") {
+//     return;
+//   }
+
+//   const product = event.target.closest("#product");
+//   const productId = Number(product.dataset.id);
+//   const currentProduct = instruments.find(({ id }) => id === productId);
+//   const products = JSON.parse(localStorage.getItem(PRODUCTS_LS_KEY)) ?? [];
+//   const checkoutProductId = products.findIndex(({ id }) => id === productId);
+
+//   if (checkoutProductId === -1) {
+//     currentProduct.quantity = 1;
+//     products.push(currentProduct);
+//   } else {
+//     products[checkoutProductId].quantity += 1;
+//   }
+
+//   localStorage.setItem(PRODUCTS_LS_KEY, JSON.stringify(products));
+// }
+// import { createMarkup } from "./templates/product.js";
+// import instruments from "../products.json" assert { type: "json" };
+// console.log(instruments);
+// const refs = {
+//   productsList: document.getElementById("productsList"),
+// };
+// const PROTUCTS_LS = "checkout";
+
+// refs.productsList.insertAdjacentHTML("beforeend", createMarkup(instruments));
+// refs.productsList.addEventListener("click", handleAdd);
+// function handleAdd(e) {
+//   if (e.target.id !== "addBtn") {
+//     return;
+//   }
+//   //Записуємо батька
+//   const product = e.target.closest("#product");
+//   //Знаходимо айді цієї картки
+//   const productId = Number(product.dataset.id);
+//   // Знаходимо айді в масиві, та виводимо картку
+//   const current = instruments.find(({ id }) => id === productId);
+
+//   const products = JSON.parse(localStorage.getItem(PROTUCTS_LS)) ?? [];
+
+//   const checkProduct = products.findIndex(({ id }) => id === productId);
+//   console.log(checkProduct);
+//   if (checkProduct === -1) {
+//     current.quantity = 1;
+//     products.push(current);
+//   } else {
+//     products[checkProduct].quantity += 1;
+//   }
+//   localStorage.setItem(PROTUCTS_LS, JSON.stringify(products));
+// }
+import instruments from './products.json';
+import { createMarkup } from './templates/product';
+const refs = {
+  productsList: document.getElementById('productsList'),
+};
+const KEY = 'checkout';
+
+refs.productsList.insertAdjacentHTML('beforeend', createMarkup(instruments));
+refs.productsList.addEventListener('click', handleAdd);
+function handleAdd(e) {
+  if (e.target.id !== 'addBtn') {
+    return;
+  }
+
+  const product = e.target.closest('#product');
+  const productId = Number(product.dataset.id);
+  const currentProduct = instruments.find(({ id }) => id === productId);
+  const prodacts = JSON.parse(localStorage.getItem(KEY)) ?? [];
+  const checkoutId = prodacts.findIndex(({ id }) => id === productId);
+  if (checkoutId === -1) {
+    currentProduct.quantity = 1;
+    prodacts.push(currentProduct);
+  } else {
+    prodacts[checkoutId].quantity += 1;
+  }
+
+  localStorage.setItem(KEY, JSON.stringify(prodacts));
+}
