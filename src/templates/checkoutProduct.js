@@ -4,13 +4,13 @@
 //       markup +
 //       `
 //     <li class="cart-item">
-//       <img src="${img}" alt="${name}" class="product-img"/>
+//       <img src="${img}" alt="${name}" class="product-img" width="50px"/>
 //       <h2>${name}</h2>
 //       <p>Quantity: ${quantity}</p>
 //       <p>Total price: ${quantity * price} грн</p>
 //   </li>
 //       `,
-//     ""
+//     ''
 //   );
 // }
 
