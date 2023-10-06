@@ -1,37 +1,30 @@
-// import instruments from './products.json';
-// import { createMarkup } from './templates/product';
 const refs = {
-  productsList: document.getElementById('productsList'),
+  buttonAdd: document.querySelectorAll('.product-add-btn'),
 };
+
 const KEY = 'checkout';
-// console.log(refs.productsList.firstElementChild.dataset.id);
-// refs.productsList.insertAdjacentHTML('beforeend', createMarkup(instruments));
-refs.productsList.addEventListener('click', handleAdd);
-function handleAdd(e) {
-  console.log(e.target.type);
-  if (e.target.type !== 'button') {
-    return;
-  }
-
-  const product = e.target.closest('#product');
-  console.log(product.innerHTML);
-  const productId = Number(product.dataset.id);
-  console.log(productId);
-  // if (refs.productsList.firstElementChild.dataset.id === productId) {
-  //   console.log(refs.productsList.firstElementChild.dataset.id);
-  // }
-  // const currentProduct = productsList.find(({ id }) => id === productId);
-  // const prodacts = JSON.parse(localStorage.getItem(KEY)) ?? [];
-  // const checkoutId = prodacts.findIndex(({ id }) => id === productId);
-  // if (checkoutId === -1) {
-  //   currentProduct.quantity = 1;
-  //   prodacts.push(currentProduct);
-  // } else {
-  //   prodacts[checkoutId].quantity += 1;
-  // }
-
-  localStorage.setItem(
-    ` checkout ${product.dataset.id}`,
-    JSON.stringify(product.innerHTML)
-  );
+let productCard = '';
+console.log(refs.buttonAdd);
+// refs.buttonAdd.addEventListener('click', handleAdd);
+function btn() {
+  refs.buttonAdd.forEach(element => {
+    element.addEventListener('click', function (e) {
+      const product = element.closest('#product');
+      console.log(product);
+      const date = {
+        id: product.dataset.id,
+        name: product.children[1].textContent,
+        img: product.children[0].src,
+      };
+      console.log(date);
+      localStorage.setItem(KEY, JSON.stringify(date));
+    });
+  });
 }
+btn();
+// function handleAdd(e) {
+//   console.log(e.target);
+
+//
+
+// }
