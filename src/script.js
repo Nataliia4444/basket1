@@ -3,28 +3,24 @@ const refs = {
 };
 
 const KEY = 'checkout';
-let productCard = '';
-console.log(refs.buttonAdd);
-// refs.buttonAdd.addEventListener('click', handleAdd);
+const array = [];
+
 function btn() {
   refs.buttonAdd.forEach(element => {
     element.addEventListener('click', function (e) {
       const product = element.closest('#product');
-      console.log(product);
       const date = {
         id: product.dataset.id,
-        name: product.children[1].textContent,
+        name: product.children[1].children[0].textContent,
         img: product.children[0].src,
+        price: product.children[1].children[2].firstElementChild.textContent,
       };
-      console.log(date);
-      localStorage.setItem(KEY, JSON.stringify(date));
+      array.push(date);
+
+      localStorage.setItem(KEY, JSON.stringify(array));
     });
   });
 }
+console.log(array);
 btn();
-// function handleAdd(e) {
-//   console.log(e.target);
 
-//
-
-// }
