@@ -16,10 +16,10 @@ function handleSubmitForm (e){
             for (let i = 1; i <= amound; i +=1){
                 createPromise(i, currentDelay)
                 .then(({ position, delay }) => {
-                Notiflix.Notify.success('✅ Fulfilled promise ${position} in ${delay}ms');
+                Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
                 })
                 .catch(({ position, delay }) => {
-                Notiflix.Notify.warning('❌ Rejected promise ${position} in ${delay}ms');
+                Notiflix.Notify.warning(`❌ Rejected promise ${position} in ${delay}ms`);
 
             });
             currentDelay += step
