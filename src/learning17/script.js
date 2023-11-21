@@ -72,3 +72,53 @@ function handleOnLoadMore(){
 
 }
 
+// /! FETCH
+import axios from 'axios';
+
+// function serviceCountry() {
+//   const URL = "https://restcountries.com/v3.1/name/Ukraine";
+//   return axios.get(URL)
+// }
+
+// serviceCountry().then((res) => console.log(res)).catch(console.log);
+// function getImage (q = "bmw", pag = 1){
+//   const params = new URLSearchParams({
+//       key: "39036273-6668926e4f0bebacaced31faa",
+//       q,
+//       image_type: "photo",
+//       orientation: "horizontal",
+//       savesearch:   "true",   
+//       page: pag,
+//       per_page: 40,
+//   });
+//   const URL = "https://pixabay.com/api/"
+//   return  axios.get(`${URL}?${params}`)
+// }
+// export {getImage}
+// getImage().then((date) => console.log(date.data))
+// const number = 8.3
+// console.log(isSafeInteger(8.1))
+
+
+
+
+// String.prototype.toJadenCase = function () {
+//   // const arr = str.split(' ')
+  
+//   return 5
+// };
+// var str = "How can mirrors be real if our eyes aren't real";
+// console.log((str.toJadenCase(), "How Can Mirrors Be Real If Our Eyes Aren't Real"))
+// function toJadenCase(str){
+//   const arr =  str.split(' ')
+//   return arr.map((el) => {
+//     console.log(el)
+//     // const newArr = el.split('')
+//     // newArr[0].toUpperCase()
+    
+//     // return newArr[0].toUpperCase()
+//   })
+  
+//   // return arr
+// };
+// console.log(toJadenCase( "How can mirrors be real if our eyes aren't real"))
