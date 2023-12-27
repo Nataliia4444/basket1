@@ -9,6 +9,7 @@ function btn() {
   refs.buttonAdd.forEach(element => {
     element.addEventListener('click', function (e) {
       const product = element.closest('#product');
+
       const date = {
         id: product.dataset.id,
         name: product.children[1].children[0].textContent,
@@ -21,6 +22,6 @@ function btn() {
     });
   });
 }
+
 console.log(array);
 btn();
-

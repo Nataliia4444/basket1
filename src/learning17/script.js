@@ -19,6 +19,7 @@ function handleFormSubmit(e) {
       if (data.total === 0) {
         page = 0;
         refs.searchBtn.disabled = true;
+        refs.loadMore.hidden = true;
         Notiflix.Notify.failure('Відсутні дані запиту');
         return;
       }
@@ -26,6 +27,8 @@ function handleFormSubmit(e) {
       refs.loadMore.hidden = false;
       refs.loadMore.style.display = 'block';
       refs.gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
+      // refs.loadMore.hidden = true;
+      // refs.loadMore.hidden = false;
       const lightbox = new SimpleLightbox('.gallery a', {
         captions: true,
         captionsData: 'alt',
@@ -38,6 +41,7 @@ function handleFormSubmit(e) {
     })
 
     .catch(() => {
+      // refs.loadMore.hidden = true;
       return Notiflix.Notify.failure('Виникла помилка запиту');
     })
     .finally(() => {
@@ -60,6 +64,7 @@ function handleOnLoadMore() {
       refs.gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
     })
     .catch(() => {
+      refs.loadMore.hidden = true;
       return Notiflix.Notify.failure('Виникла помилка запиту');
     });
 }
