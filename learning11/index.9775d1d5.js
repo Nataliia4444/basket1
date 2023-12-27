@@ -1,0 +1,2 @@
+let t=null;const n={btnStart:document.querySelector('button[data-action="start"]'),btnStop:document.querySelector('button[data-action="stop"]')};n.btnStart.addEventListener("click",(function(){t=setInterval((()=>{document.body.style.backgroundColor=`#${Math.floor(16777215*Math.random()).toString(16).padStart(6,0)}`}),1e3)})),n.btnStop.addEventListener("click",(function(){clearInterval(t)}));
+//# sourceMappingURL=index.9775d1d5.js.map

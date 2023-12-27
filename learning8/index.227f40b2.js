@@ -1,0 +1,2 @@
+const t={buttonAdd:document.querySelectorAll(".product-add-btn")},e=[];console.log(e),t.buttonAdd.forEach((t=>{t.addEventListener("click",(function(n){const c=t.closest("#product"),d={id:c.dataset.id,name:c.children[1].children[0].textContent,img:c.children[0].src,price:c.children[1].children[2].firstElementChild.textContent};e.push(d),localStorage.setItem("checkout",JSON.stringify(e))}))}));
+//# sourceMappingURL=index.227f40b2.js.map

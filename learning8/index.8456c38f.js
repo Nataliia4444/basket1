@@ -1,0 +1,2 @@
+!function(){var t={buttonAdd:document.querySelectorAll(".product-add-btn")},e=[];console.log(e),t.buttonAdd.forEach((function(t){t.addEventListener("click",(function(n){var c=t.closest("#product"),d={id:c.dataset.id,name:c.children[1].children[0].textContent,img:c.children[0].src,price:c.children[1].children[2].firstElementChild.textContent};e.push(d),localStorage.setItem("checkout",JSON.stringify(e))}))}))}();
+//# sourceMappingURL=index.8456c38f.js.map
